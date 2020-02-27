@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Session Values:</h1>
+
+@{
+    if (!Context.Session.Keys.Any())
+    {
+        @Html.Label("Empty", "No session values found.");
+    }
+    else
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var key in Context.Session.Keys)
+            {
+                <tr>
+                    <td>@key</td>
+                    <td>@Context.Session.GetString(key)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
+
